@@ -9,7 +9,7 @@ const ServiceCard = ({service}) => {
     <h2 className="card-title">{title}</h2>
     <p>price: {price}</p>
     <div className="card-actions">
-      <button className="btn btn-primary">Buy Now</button>
+      <button className="btn btn-primary">Order Now</button>
     </div>
   </div>
 </div>
