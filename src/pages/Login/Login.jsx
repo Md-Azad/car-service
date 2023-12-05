@@ -1,9 +1,26 @@
 import { Link } from 'react-router-dom';
 import loginImg from '../../assets/images/login/login.svg'
+import { useContext } from 'react';
+import { AuthContext } from '../../providers/AuthProvider';
 const Login = () => {
+
+  const {signIn} = useContext(AuthContext);
     const HandleLogin =event =>{
         event.preventDefault();
-        console.log("hello");
+        const form = event.target;
+        const email = form.email.value;
+        const password = form.password.value;
+        // console.log(email,password);
+
+        signIn(email,password)
+        .then(result=>{
+          const user = result.user;
+          console.log(user);
+        })
+        .catch(err=>{
+          console.log(err.message);
+        })
+        
     }
   return (
     <div className="hero bg-base-200 my-4">
@@ -23,6 +40,7 @@ const Login = () => {
               <input
                 type="email"
                 placeholder="email"
+                name='email'
                 className="input input-bordered"
                 required
               />
@@ -34,6 +52,7 @@ const Login = () => {
               <input
                 type="password"
                 placeholder="password"
+                name='password'
                 className="input input-bordered"
                 required
               />
