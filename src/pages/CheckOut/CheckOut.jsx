@@ -1,16 +1,58 @@
 import { useContext } from "react";
 import { useLoaderData } from "react-router-dom";
 import { AuthContext } from "../../providers/AuthProvider";
+import Swal from "sweetalert2";
 
 const CheckOut = () => {
   const service = useLoaderData();
-  const { title,price } = service;
+  const { title,price,_id,img } = service;
+  
   const {user} = useContext(AuthContext);
+
+  const handleCheckOut=event=>{
+    event.preventDefault();
+    const form = event.target;
+    const name = form.name.value;
+    const date = form.date.value;
+    const email = user?.email;
+    const due = price;
+    const order ={
+      CustomarName:name,
+      date,
+      email,
+      img,
+      price: due,
+      service_id:_id,
+      service_name: title
+
+    }
+    // console.log(order);
+    fetch('http://localhost:5000/booking',{
+      method:'POST',
+      headers:{
+        'content-type':'application/json',
+      },
+      body:JSON.stringify(order)
+    })
+    .then(res=>res.json())
+    .then(data=>{
+      if(data.insertedId){
+        Swal.fire({
+          position: "top-end",
+          icon: "success",
+          title: "Your booking is saved",
+          showConfirmButton: false,
+          timer: 1500
+        });
+      }
+    })
+  }
+  
   return (
     <div>
       <h1>service name:{title} </h1>
 
-      <form className="card-body">
+      <form onSubmit={handleCheckOut} className="card-body">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <div className="form-control">
             <label className="label">
@@ -19,7 +61,7 @@ const CheckOut = () => {
             <input
               type="text"
               name="name"
-              
+              defaultValue={user?.displayName}
               className="input input-bordered"
               required
             />
