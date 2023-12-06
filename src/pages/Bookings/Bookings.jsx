@@ -12,7 +12,7 @@ const Bookings = () => {
     fetch(url)
       .then((res) => res.json())
       .then((data) => setBookings(data));
-  }, []);
+  }, [url]);
 
   const handleDeleteBooking = (id) => {
     Swal.fire({
@@ -44,6 +44,26 @@ const Bookings = () => {
     });
   };
 
+  const handleBookingConfirm = id=>{
+    fetch(`http://localhost:5000/booking/${id}`,{
+        method: 'PATCH',
+        headers:{
+            'content-type':'application/json',
+        },
+        body: JSON.stringify({status:'confirm'})
+    })
+    .then(res=>res.json())
+    .then(data=>{
+        if(data.modifiedCount>0){
+            const remainigBooking = bookings.filter(booking =>booking._id!==id);
+            const updatedBooking = bookings.find(booking =>booking._id ===id);
+            updatedBooking.status = 'confirm'
+            const newBookings =[updatedBooking, ...remainigBooking];
+            setBookings(newBookings)
+        }
+    })
+  }
+
   return (
     <div className="overflow-x-auto">
         <h1 className="text-2xl text-red-700">Bookings: {bookings.length}</h1>
@@ -61,7 +81,7 @@ const Bookings = () => {
         </thead>
         <tbody>
           {bookings.map((booking) => (
-            <BookingRow key={booking._id} booking={booking} handleDeleteBooking={handleDeleteBooking}></BookingRow>
+            <BookingRow key={booking._id} booking={booking} handleDeleteBooking={handleDeleteBooking} handleBookingConfirm={handleBookingConfirm}></BookingRow>
           ))}
         </tbody>
       </table>
