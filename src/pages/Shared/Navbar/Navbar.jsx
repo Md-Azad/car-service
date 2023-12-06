@@ -8,8 +8,10 @@ const Navbar = () => {
 
   const handleLogOut =()=>{
     logOut()
-    .then(()=>{})
-    .then(error=>console.log(error.message))
+    .then(()=>{
+      localStorage.removeItem('access-token');
+    })
+    .then(error=>console.log(error))
   }
   const navOption = (
     <>
