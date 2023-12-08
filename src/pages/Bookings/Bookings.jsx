@@ -16,7 +16,7 @@ const Bookings = () => {
     fetch(url,{
       method:'GET',
       headers: {
-        authorization: `beared ${localStorage.getItem('access-token')}`
+        authorization: `bearer ${localStorage.getItem('access-token')}`
       }
     })
       .then((res) => res.json())

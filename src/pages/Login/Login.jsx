@@ -2,6 +2,7 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import loginImg from "../../assets/images/login/login.svg";
 import { useContext } from "react";
 import { AuthContext } from "../../providers/AuthProvider";
+import GoogleLogin from "../Shared/GoogleLogin/GoogleLogin";
 const Login = () => {
   const { signIn } = useContext(AuthContext);
   let location = useLocation();
@@ -84,6 +85,7 @@ const Login = () => {
               <input className="btn btn-primary" type="submit" value="Login" />
             </div>
           </form>
+          <GoogleLogin></GoogleLogin>
           
           <p className="text-center mb-4">
             New to Car Service{" "}
@@ -91,6 +93,7 @@ const Login = () => {
               <span className="font-semibold text-red-600">Sign Up</span>
             </Link>
           </p>
+          
         </div>
       </div>
     </div>
