@@ -20,7 +20,7 @@ const Banner = () => {
               have suffered alteration in osme form.
             </p>
             <div>
-              <button className="btn btn-primary  mr-5">Warning</button>
+              <button className="btn btn-primary  mr-5">See More</button>
               <button className="btn btn-outline btn-warning">Warning</button>
             </div>
           </div>
