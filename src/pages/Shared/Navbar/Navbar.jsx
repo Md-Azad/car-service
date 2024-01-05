@@ -9,7 +9,7 @@ const Navbar = () => {
   const handleLogOut =()=>{
     logOut()
     .then(()=>{
-      localStorage.removeItem('access-token');
+      
     })
     .then(error=>console.log(error))
   }
@@ -20,7 +20,7 @@ const Navbar = () => {
       </li>
 
       <li>
-        <Link>About</Link>
+        <Link to="/about">About</Link>
       </li>
       {user?.email? <>
         <li>

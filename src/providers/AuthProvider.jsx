@@ -32,6 +32,29 @@ const AuthProvider = ({children}) => {
             setUser(currentUser);
             console.log("current user: ",currentUser);
             setLoading(false);
+            if(currentUser && currentUser.email){
+                const loggedUser ={
+                    email : currentUser.email
+                }
+    
+                fetch("https://car-service-server-ruddy.vercel.app/token", {
+                    method: "POST",
+                    headers: {
+                      "content-type": "application/json",
+                    },
+                    body: JSON.stringify({loggedUser }),
+                  })
+                    .then((res) => res.json())
+                    .then((data) => {
+                      console.log("jwt response", data);
+                      // Warning: local storage is not the best place to store token;
+                      localStorage.setItem('access-token',data.token);
+                       
+                    });
+            }
+            else{
+                localStorage.removeItem('access-token');
+            }
         });
         return ()=>{
             return unsubscribe();

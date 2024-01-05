@@ -20,22 +20,9 @@ const Login = () => {
     signIn(email, password)
       .then((result) => {
         const user = result.user;
-        const loggedUser = user.email;
-        fetch("http://localhost:5000/token", {
-          method: "POST",
-          headers: {
-            "content-type": "application/json",
-          },
-          body: JSON.stringify({loggedUser }),
-        })
-          .then((res) => res.json())
-          .then((data) => {
-            console.log("jwt response", data);
-            // Warning: local storage is not the best place to store token;
-
-            localStorage.setItem('access-token',data.token);
-             navigate(from, { replace: true });
-          });
+        console.log(user);
+        // const loggedUser = user.email;
+        navigate(from, { replace: true });
        
       })
       .catch((err) => {

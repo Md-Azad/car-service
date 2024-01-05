@@ -6,6 +6,7 @@ import SignUp from "../pages/SignUp/SignUp";
 import CheckOut from "../pages/CheckOut/CheckOut";
 import Bookings from "../pages/Bookings/Bookings";
 import PrivateRoute from "./PrivateRoute";
+import About from "../pages/Home/About/About";
 
 
 const router = createBrowserRouter([
@@ -26,9 +27,14 @@ const router = createBrowserRouter([
           element: <SignUp></SignUp>
         },
         {
+          path:'/about',
+          element:<About></About>
+
+        },
+        {
           path: '/checkout/:id',
           element:<PrivateRoute><CheckOut></CheckOut></PrivateRoute>,
-          loader: ({params})=>fetch(`http://localhost:5000/services/${params.id}`)
+          loader: ({params})=>fetch(`https://car-service-server-ruddy.vercel.app/services/${params.id}`)
         },
         {
           path: '/bookings',
