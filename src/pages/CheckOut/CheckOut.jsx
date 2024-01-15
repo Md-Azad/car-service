@@ -8,8 +8,7 @@ const CheckOut = () => {
   const { title,price,_id,img } = service;
   
   const {user} = useContext(AuthContext);
- 
-
+  
   const handleCheckOut=event=>{
     event.preventDefault();
     const form = event.target;
@@ -27,8 +26,8 @@ const CheckOut = () => {
       service_name: title
 
     }
-    // console.log(order);
-    fetch('https://car-service-server-ruddy.vercel.app/booking',{
+    
+    fetch('http://localhost:5000/booking',{
       method:'POST',
       headers:{
         'content-type':'application/json',

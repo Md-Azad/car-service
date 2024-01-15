@@ -21,8 +21,12 @@ const Login = () => {
       .then((result) => {
         const user = result.user;
         console.log(user);
-        // const loggedUser = user.email;
-        navigate(from, { replace: true });
+        if(form){
+          navigate(from, { replace: true });
+        }else{
+          navigate('/')
+        }
+        
        
       })
       .catch((err) => {

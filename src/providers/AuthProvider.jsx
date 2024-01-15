@@ -37,7 +37,7 @@ const AuthProvider = ({children}) => {
                     email : currentUser.email
                 }
     
-                fetch("https://car-service-server-ruddy.vercel.app/token", {
+                fetch("http://localhost:5000/token", {
                     method: "POST",
                     headers: {
                       "content-type": "application/json",

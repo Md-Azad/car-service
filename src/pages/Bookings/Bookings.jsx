@@ -11,7 +11,7 @@ const Bookings = () => {
 
   
 
-  const url = `https://car-service-server-ruddy.vercel.app/booking?email=${user?.email}`;
+  const url = `http://localhost:5000/booking?email=${user?.email}`;
   useEffect(() => {
     fetch(url,{
       method:'GET',
@@ -43,7 +43,7 @@ const Bookings = () => {
       confirmButtonText: "Yes, delete it!",
     }).then((result) => {
       if (result.isConfirmed) {
-        fetch(`https://car-service-server-ruddy.vercel.app/booking/${id}`, {
+        fetch(`http://localhost:5000/booking/${id}`, {
           method: "DELETE",
         })
           .then((res) => res.json())
@@ -63,7 +63,7 @@ const Bookings = () => {
   };
 
   const handleBookingConfirm = id=>{
-    fetch(`https://car-service-server-ruddy.vercel.app/booking/${id}`,{
+    fetch(`http://localhost:5000/booking/${id}`,{
         method: 'PATCH',
         headers:{
             'content-type':'application/json',
