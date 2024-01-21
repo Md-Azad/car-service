@@ -37,7 +37,7 @@ const AuthProvider = ({children}) => {
                     email : currentUser.email
                 }
     
-                fetch("http://localhost:5000/token", {
+                fetch("https://car-service-yamq.onrender.com/token", {
                     method: "POST",
                     headers: {
                       "content-type": "application/json",

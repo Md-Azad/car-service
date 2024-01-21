@@ -7,7 +7,7 @@ const Services = () => {
   
 
   useEffect(() => {
-    fetch("http://localhost:5000/services")
+    fetch("https://car-service-yamq.onrender.com/services")
       .then((res) => res.json())
       .then((data) => {
         

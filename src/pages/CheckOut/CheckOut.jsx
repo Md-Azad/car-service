@@ -27,7 +27,7 @@ const CheckOut = () => {
 
     }
     
-    fetch('http://localhost:5000/booking',{
+    fetch('https://car-service-yamq.onrender.com/booking',{
       method:'POST',
       headers:{
         'content-type':'application/json',
